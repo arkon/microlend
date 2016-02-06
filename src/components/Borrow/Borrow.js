@@ -1,6 +1,7 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlight from 'autosuggest-highlight';
+import { Row, Col } from '../Grid/Grid';
 
 const friends = [
   {
@@ -33,15 +34,21 @@ function getSuggestionValue (suggestion) {
   return suggestion.name;
 }
 
+function createProfileImage (fileName) {
+  return <img className='react-autosuggest__suggestion__content__photo' src={`/img/users/${fileName}`} />
+}
+
 function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
   const suggestionText = suggestion.name;
   const query = (valueBeforeUpDown || value).trim();
   const matches = AutosuggestHighlight.match(suggestionText, query);
   const parts = AutosuggestHighlight.parse(suggestionText, matches);
 
+  var profilePicture = createProfileImage(suggestion.img);
+
   return (
     <span className='react-autosuggest__suggestion__content'>
-      <img className='react-autosuggest__suggestion__content__photo' src={`/img/users/${suggestion.img}`} />
+      {profilePicture}
       <span className='react-autosuggest__suggestion__content__name'>
         { parts.map((part, index) => {
           const className = part.highlight ? 'react-autosuggest__suggestion__content__name--highlight' : null;
@@ -61,7 +68,8 @@ class Borrow extends React.Component {
 
     this.state = {
       value: '',
-      suggestions: getSuggestions('')
+      suggestions: getSuggestions(''),
+      teamMembers: []
     };
   }
 
@@ -82,6 +90,28 @@ class Borrow extends React.Component {
   onSuggestionSelected (event, { suggestion, suggestionValue, method }) {
     console.log(suggestion);
     console.log(suggestionValue);
+    this.state.teamMembers.push(suggestion);
+  }
+
+  getTeamMembers () {
+    var memberMarkup = this.state.teamMembers.map((member) => {
+      var profilePicture = createProfileImage(member.img);
+
+      return (
+        <span key={member.name}>
+          {profilePicture}
+          <span>{member.name}</span>
+        </span>
+      );
+    });
+
+    return(
+      <Row>
+        <Col>
+          {memberMarkup}
+        </Col>
+      </Row>
+    );
   }
 
   render () {
@@ -90,6 +120,8 @@ class Borrow extends React.Component {
       value: this.state.value,
       onChange: this.onChange
     };
+
+    var teamMembers = this.getTeamMembers();
 
     return (
       <div className='container'>
@@ -100,20 +132,19 @@ class Borrow extends React.Component {
         <input type='number' required />
 
         <label>Pick your group members</label>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <Autosuggest suggestions={this.state.suggestions}
-                  getSuggestionValue={getSuggestionValue}
-                  renderSuggestion={renderSuggestion}
-                  inputProps={inputProps}
-                  onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
-                  onSuggestionSelected={this.onSuggestionSelected} />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <Row>
+          <Col>
+            <Autosuggest suggestions={this.state.suggestions}
+              getSuggestionValue={getSuggestionValue}
+              renderSuggestion={renderSuggestion}
+              inputProps={inputProps}
+              onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+              onSuggestionSelected={this.onSuggestionSelected.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        {teamMembers}
 
         <button>Submit</button>
       </div>
