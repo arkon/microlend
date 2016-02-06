@@ -1,0 +1,25 @@
+label {
+  display: block;
+  margin: 0.25em 0;
+}
+
+input {
+  background-color: $color-grey-200;
+  border: 1px solid $color-teal;
+  border-radius: $radius;
+  color: $color-black;
+  padding: 0.25em;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    background-color: $color-white;
+  }
+}
+
+button {
+  background-color: $color-green;
+  border: 0;
+  border-radius: $radius;
+  padding: 0.25em 1em;
+}
