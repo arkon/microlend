@@ -1,0 +1,11 @@
+.user_form {
+  border-radius: $radius;
+  border: 1px solid $color-teal;
+  margin: 3em auto;
+  max-width: 25em;
+  padding: 1.5em;
+
+  button {
+    margin-top: 1em;
+  }
+}

@@ -1,0 +1,17 @@
+.dashboard__section {
+  + .dashboard__section {
+    margin-top: 3em;
+  }
+
+  h2 {
+    border-bottom: 1px solid $color-grey-500;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+  }
+}
+
+.dashboard__tile {
+  @extend button;
+  height: 5em;
+  padding: 1em;
+}

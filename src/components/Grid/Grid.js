@@ -1,44 +1,44 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export const Grid = {
+export const Grid = (props) => {
   return (
-    <div className={this.props.className}>
-      {this.props.children}
+    <div className={props.className}>
+      {props.children}
     </div>
   );
 };
 
-export const Row = {
+export const Row = (props) => {
   const rowClass = classnames('grid__row', {
     // Vertical alignment
-    [`grid__row--${this.props.align}`]: typeof this.props.align !== 'undefined',
+    [`grid__row--${props.align}`]: typeof props.align !== 'undefined',
 
     // Reverse contents
-    'grid__row--reverse': this.props.reverse,
+    'grid__row--reverse': props.reverse,
 
-    [this.props.className]: typeof this.props.className !== 'undefined'
+    [props.className]: typeof props.className !== 'undefined'
   });
 
   return (
     <div className={rowClass}>
-      {this.props.children}
+      {props.children}
     </div>
   );
 };
 
-export const Col = {
+export const Col = (props) => {
   // Specific width, or automatic width column
-  const colClass = classnames(this.props.width ? `grid__col--${this.props.width}` : 'grid__col', {
+  const colClass = classnames(props.width ? `grid__col--${props.width}` : 'grid__col', {
     // Left offset
-    [`grid__col--offset--${this.props.offset}`]: typeof this.props.offset !== 'undefined',
+    [`grid__col--offset--${props.offset}`]: typeof props.offset !== 'undefined',
 
-    [this.props.className]: typeof this.props.className !== 'undefined'
+    [props.className]: typeof props.className !== 'undefined'
   });
 
   return (
     <div className={colClass}>
-      {this.props.children}
+      {props.children}
     </div>
   );
 };
