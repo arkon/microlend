@@ -12,7 +12,7 @@
 
 .dashboard__tile {
   @extend button;
-  height: 5em;
+  background: $color-teal;
   padding: 1em;
 }
 

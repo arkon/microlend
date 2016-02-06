@@ -1,14 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export const Grid = (props) => {
-  return (
-    <div className={props.className}>
-      {props.children}
-    </div>
-  );
-};
-
 export const Row = (props) => {
   const rowClass = classnames('grid__row', {
     // Vertical alignment
