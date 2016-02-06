@@ -13,12 +13,22 @@ body {
 }
 
 body {
-  background-color: $color-grey-100;
-  color: $color-black;
+  background-color: $color-grey-700;
+  color: $color-white;
   font: 400 16px/1.5 $fonts;
 }
 
 ::selection {
   background-color: $color-teal;
   color: $color-white;
+}
+
+a {
+  color: $color-teal;
+  text-decoration: none;
+  transition: color 0.15s;
+
+  &:hover {
+    color: $color-green;
+  }
 }
