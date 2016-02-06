@@ -7,8 +7,10 @@ class Dashboard extends React.Component {
       <div>
         <h1>Dashboard</h1>
 
-        <Link to='/invest'>Invest</Link>
-        <Link to='/loan'>Loan</Link>
+        <Link to='/dashboard/invest'>Invest</Link>
+        <Link to='/dashboard/loan'>Loan</Link>
+
+        {this.props.children}
       </div>
     );
   }
