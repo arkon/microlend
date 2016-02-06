@@ -8,7 +8,8 @@ input {
   border: 1px solid $color-teal;
   border-radius: $radius;
   color: $color-black;
-  padding: 0.25em;
+  font: inherit;
+  padding: 0.25em 0.35em;
   transition: background-color 0.25s;
   width: 100%;
 
@@ -24,6 +25,7 @@ button {
   border-radius: $radius;
   box-shadow: 0 0.1em 0.15em rgba($color-black, 0.5);
   color: $color-white;
+  font: inherit;
   margin: 1em 0;
   padding: 0.35em 1em;
   position: relative;
