@@ -13,7 +13,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Login from './components/User/Login';
 import Register from './components/User/Register';
 import Dashboard from './components/Dashboard/Dashboard';
-import Invest from './components/Dashboard/Invest';
+import Invest from './components/Invest/Invest';
 import Borrow from './components/Borrow/Borrow';
 
 require('./styles/styles.scss');

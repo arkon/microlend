@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
 
           <Row>
             <Col>
-              <Link to='/dashboard/invest'>
+              <Link to='/invest'>
                 <div className='dashboard__tile'>
                   <h3>Invest</h3>
                   <p>Contribute to a global pool to get promised return.</p>
