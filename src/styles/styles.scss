@@ -5,3 +5,10 @@
 @import 'utils/variables';
 @import 'utils/mixins';
 @import 'utils/core';
+
+@import 'layout/grid';
+@import 'layout/content';
+
+@import 'components/header';
+@import 'components/footer';
+@import 'components/landingpage';

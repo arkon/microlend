@@ -1,0 +1,31 @@
+.header {
+  background-color: $color-white;
+  color: $color-teal;
+
+  &::before {
+    background: linear-gradient(to right, $color-teal, $color-green);
+    content: '';
+    display: block;
+    height: 0.25em;
+    width: 100%;
+  }
+
+  .container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1em;
+    padding-top: 1em;
+  }
+}
+
+.header__brand {
+  font-size: 2em;
+  font-weight: 300;
+}
+
+.header__nav {
+  a + a {
+    margin-left: 2em;
+  }
+}
