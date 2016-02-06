@@ -3,7 +3,7 @@ import React from 'react';
 class Borrow extends React.Component {
   render () {
     return (
-      <div>
+      <div className="container">
         <h3>Borrow</h3>
 
         <label>Amount ($)</label>

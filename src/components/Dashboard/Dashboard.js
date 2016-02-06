@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
                 </Link>
               </Col>
               <Col>
-                <Link to='/dashboard/borrow'>
+                <Link to='/borrow'>
                   <div className='dashboard__tile'>
                     <h3>Borrow</h3>
                     <p>Borrow in a group to get lower interest rates.</p>
