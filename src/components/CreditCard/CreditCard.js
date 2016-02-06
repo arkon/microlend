@@ -11,7 +11,7 @@ const CreditCard = (props) => {
       </div>
 
       <label>Number</label>
-      <p>{props.data.number.replace(/^(\d{12})(\d{4}).*/, '••••••••••••••••$2')}</p>
+      <p>{props.data.number.replace(/^(\d{12})(\d{4}).*/, '•••••••••••••••• $2')}</p>
 
       <label>Expiration</label>
       <p>{props.data.month} / {props.data.year}</p>
