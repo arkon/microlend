@@ -16,6 +16,10 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',
       },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass']
+      },
     ],
   },
   devServer: {
