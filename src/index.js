@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistory, routeReducer } from 'react-router-redux';
 
 import reducers from './reducers';
@@ -21,7 +21,7 @@ const reducer = combineReducers(Object.assign({}, reducers, {
 }));
 
 // Sync dispatched route actions to the history
-const reduxRouterMiddleware = syncHistory(browserHistory);
+const reduxRouterMiddleware = syncHistory(hashHistory);
 const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(reducer);
@@ -31,7 +31,7 @@ reduxRouterMiddleware.listenForReplays(store);
 
 render((
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={LandingPage} />
         <Route path='login' component={Login} />

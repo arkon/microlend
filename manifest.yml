@@ -1,8 +1,8 @@
 applications:
 - path: .
-  memory: 256M
+  memory: 1024M
   instances: 1
   domain: mybluemix.net
   name: microlend
   host: microlend
-  disk_quota: 1024M
+  disk_quota: 2048M
