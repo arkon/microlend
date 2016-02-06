@@ -10,7 +10,7 @@ class Payment extends React.Component {
 
         <h2>Credit and debit cards</h2>
 
-        <ul>
+        <ul className='payment__cards'>
           <li>
             <CreditCard data={{
               type: 'VISA',
@@ -21,9 +21,9 @@ class Payment extends React.Component {
               cvc: '345'
             }} />
 
-            Edit
-            Remove
-            Set as default
+            <a href='#'>Edit</a>
+            <a href='#'>Remove</a>
+            <a href='#'>Set as default</a>
           </li>
         </ul>
       </div>

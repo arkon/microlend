@@ -1,3 +1,29 @@
 .credit_card {
+  background: linear-gradient(-45deg, $color-green, $color-teal);
+  border: 0.25em solid $color-teal;
+  border-radius: $radius * 2;
+  box-shadow: 0 0.1em 0.15em rgba($color-black, 0.5);
+  height: 14em;
+  padding-left: 11em;
+  position: relative;
+  width: 25em;
 
+  label {
+    font-size: 0.75em;
+    font-weight: 600;
+    margin-top: 1rem;
+    text-transform: uppercase;
+  }
+}
+
+.credit_card__side {
+  background-color: rgba($color-white, 0.8);
+  border-radius: ($radius * 2) 0 0 ($radius * 2);
+  color: $color-teal;
+  height: 100%;
+  left: 0;
+  padding: 1em;
+  position: absolute;
+  top: 0;
+  width: 10em;
 }
