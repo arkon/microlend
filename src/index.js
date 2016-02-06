@@ -22,6 +22,9 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Invest from './components/Dashboard/Invest';
 import Borrow from './components/Borrow/Borrow';
 
+import Password from './components/User/Password';
+import Payment from './components/User/Payment';
+
 require('./styles/styles.scss');
 
 const reducer = combineReducers(Object.assign({}, reducers, {
@@ -59,6 +62,9 @@ render((
         <Route path='dashboard' component={Dashboard} onEnter={requireAuth} />
         <Route path='invest' component={Invest} onEnter={requireAuth} />
         <Route path='borrow' component={Borrow} onEnter={requireAuth} />
+
+        <Route path='user/payment' component={Payment} />
+        <Route path='user/password' component={Password} />
 
         <Route path='*' component={NotFound} />
       </Route>

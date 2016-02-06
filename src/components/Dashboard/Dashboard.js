@@ -10,19 +10,6 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
 
         <section className='dashboard__section'>
-          <h2>My status</h2>
-
-          <Row>
-            <Col>
-              Money invested
-            </Col>
-            <Col>
-              Money borrowed
-            </Col>
-          </Row>
-        </section>
-
-        <section className='dashboard__section'>
           <h2>Refinance</h2>
 
           <Row>
@@ -43,10 +30,27 @@ class Dashboard extends React.Component {
               </Link>
             </Col>
           </Row>
+        </section>
 
-          <div className='dashboard__subcontent'>
-            {this.props.children}
-          </div>
+        <section className='dashboard__section'>
+          <h2>My status</h2>
+
+          <Row>
+            <Col>
+              Money invested
+            </Col>
+            <Col>
+              Money borrowed
+            </Col>
+          </Row>
+        </section>
+
+        <section className='dashboard__section'>
+          <h2>My account</h2>
+
+          <p><Link to='/user/payment'>Manage payment methods</Link></p>
+          <p><Link to='/user/password'>Change password</Link></p>
+          <p><a href='mailto:contact@microlend.com'>Contact support</a></p>
         </section>
       </div>
     );

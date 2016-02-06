@@ -5,7 +5,7 @@ import { Row, Col } from '../Grid/Grid';
 
 const friends = [
   {
-    name: 'Eugene Chung',
+    name: 'Eugene Cheung',
     img: 'eugene.jpg'
   },
   {
@@ -22,7 +22,7 @@ const friends = [
   }
 ];
 
-function getSuggestions(value) {
+function getSuggestions (value) {
   const inputValue = value.trim().toLowerCase();
 
   return value.length === 0 ? [] : friends.filter(person =>
@@ -30,51 +30,54 @@ function getSuggestions(value) {
   );
 }
 
-function getSuggestionValue(suggestion){
+function getSuggestionValue (suggestion) {
   return suggestion.name;
 }
 
-function renderSuggestion(suggestion, { value, valueBeforeUpDown }){
+function createProfileImage(fileName){
+        return <img className='react-autosuggest__suggestion__content__photo' src={`/img/users/${fileName}`} />
+}
 
+function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
   const suggestionText = suggestion.name;
   const query = (valueBeforeUpDown || value).trim();
   const matches = AutosuggestHighlight.match(suggestionText, query);
   const parts = AutosuggestHighlight.parse(suggestionText, matches);
 
-  const profileImage = '/img/users/' + suggestion.img;
+  var profilePicture = createProfileImage(suggestion.img);
 
-  return (<span className='suggestion-content'>
-    <img className='profile-image' src={profileImage} />
-    <span className="name">
-      {
-        parts.map((part, index) => {
-          const className = part.highlight ? 'highlight' : null;
+  return (
+    <span className='react-autosuggest__suggestion__content'>
+      {profilePicture}
+      <span className='react-autosuggest__suggestion__content__name'>
+        { parts.map((part, index) => {
+          const className = part.highlight ? 'react-autosuggest__suggestion__content__name--highlight' : null;
 
           return (
             <span className={className} key={index}>{part.text}</span>
           );
-        })
-      }
+        }) }
+      </span>
     </span>
-  </span>);
+  );
 }
 
 class Borrow extends React.Component {
-
-  constructor(){
-    super();
+  constructor (props) {
+    super(props);
 
     this.state = {
-      value:'',
+      value: '',
       suggestions: getSuggestions(''),
       teamMembers: []
     };
-
-
   }
 
   onChange = (event, { newValue }) => {
-    this.setState({value: newValue});
+    this.setState({
+      value: newValue
+    });
+
     console.log('Search changed');
   };
 
@@ -84,7 +87,7 @@ class Borrow extends React.Component {
     });
   };
 
-  onSuggestionSelected(event, { suggestion, suggestionValue, method }){
+  onSuggestionSelected (event, { suggestion, suggestionValue, method }) {
     console.log(suggestion);
     console.log(suggestionValue);
     this.state.teamMembers.push(suggestion);
@@ -92,10 +95,12 @@ class Borrow extends React.Component {
 
   getTeamMembers(){
     var memberMarkup = this.state.teamMembers.map(member => {
-      const profileImage = '/img/users/' + member.img;
+
+      var profilePicture = createProfileImage(member.img);
+
       return (
         <span key={member.name}>
-          <img className='profile-image' src={profileImage} />
+          {profilePicture}
           <span>{member.name}</span>
         </span>
         );
@@ -110,7 +115,6 @@ class Borrow extends React.Component {
   }
 
   render () {
-
     const inputProps = {
       placeholder: 'Search in your network',
       value: this.state.value,
@@ -120,11 +124,9 @@ class Borrow extends React.Component {
     var teamMembers = this.getTeamMembers();
 
     return (
-      <div className="container">
-        <h2>Borrow</h2>
-        <p>
-          Borrow with a group to reduce your interest rate.
-        </p>
+      <div className='container'>
+        <h1>Borrow</h1>
+        <p>Borrow with a group to reduce your interest rate.</p>
 
         <label>Amount ($)</label>
         <input type='number' required />
@@ -133,15 +135,14 @@ class Borrow extends React.Component {
 
         <Row>
           <Col>
-          <Autosuggest suggestions={this.state.suggestions}
-            getSuggestionValue={getSuggestionValue}
-            renderSuggestion={renderSuggestion}
-            inputProps={inputProps}
-            onSuggestionsUpdateRequested = {this.onSuggestionsUpdateRequested}
-            onSuggestionSelected = {this.onSuggestionSelected.bind(this)}
+            <Autosuggest suggestions={this.state.suggestions}
+              getSuggestionValue={getSuggestionValue}
+              renderSuggestion={renderSuggestion}
+              inputProps={inputProps}
+              onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+              onSuggestionSelected={this.onSuggestionSelected.bind(this)}
             />
           </Col>
-
         </Row>
           {teamMembers}
         <button>Submit</button>
