@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors",
+    "dev": "webpack-dev-server --progress --colors",
+    "start": "node app.js",
     "build": "webpack --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +19,7 @@
     "url": "https://github.com/arkon/microlend/issues"
   },
   "homepage": "https://github.com/arkon/microlend#readme",
-  "devDependencies": {
+  "dependencies": {
     "babel-cli": "^6.4.5",
     "babel-eslint": "^5.0.0-beta10",
     "babel-loader": "^6.2.2",
@@ -45,6 +46,10 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
-    "wu": "^2.1.0"
-  }
+    "wu": "^2.1.0",
+    "cfenv": "^1.0.3"
+  },
+    "engines": {
+		"node": "0.12.x"
+	} 
 }
