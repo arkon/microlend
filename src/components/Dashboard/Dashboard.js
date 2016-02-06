@@ -12,7 +12,16 @@ class Dashboard extends React.Component {
         <section className='dashboard__section'>
           <h2>My status</h2>
 
-          <p>Hello world</p>
+          <Grid>
+            <Row>
+              <Col>
+                Money invested
+              </Col>
+              <Col>
+                Money borrowed
+              </Col>
+            </Row>
+          </Grid>
         </section>
 
         <section className='dashboard__section'>
@@ -39,7 +48,9 @@ class Dashboard extends React.Component {
             </Row>
           </Grid>
 
-          {this.props.children}
+          <div className='dashboard__subcontent'>
+            {this.props.children}
+          </div>
         </section>
       </div>
     );
