@@ -4,7 +4,7 @@ class Password extends React.Component {
   render () {
     return (
       <div className='container'>
-        <div className='user_form'>
+        <div className='form'>
           <h1>Change Password</h1>
 
           <div>

@@ -57,3 +57,19 @@ button {
 .button--teal {
   background-color: $color-teal;
 }
+
+.form {
+  border-radius: $radius;
+  border: 1px solid $color-teal;
+  margin: 3em auto;
+  max-width: 25em;
+  padding: 1.5em;
+
+  button {
+    margin-bottom: 0;
+  }
+}
+
+.form--wide {
+  max-width: 40em;
+}

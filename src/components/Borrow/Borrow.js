@@ -125,28 +125,30 @@ class Borrow extends React.Component {
 
     return (
       <div className='container'>
-        <h1>Borrow</h1>
-        <p>Borrow with a group to reduce your interest rate.</p>
+        <div className='form form--wide'>
+          <h1>Borrow</h1>
+          <p>Borrow with a group to reduce your interest rate.</p>
 
-        <label>Enter the amount you wish to invest (CAD)</label>
-        <input type='number' required />
+          <label>Enter the amount you wish to invest (CAD)</label>
+          <input type='number' required />
 
-        <label>Pick your group members</label>
-        <Row>
-          <Col>
-            <Autosuggest suggestions={this.state.suggestions}
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              inputProps={inputProps}
-              onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
-              onSuggestionSelected={this.onSuggestionSelected.bind(this)}
-            />
-          </Col>
-        </Row>
+          <label>Pick your group members</label>
+          <Row>
+            <Col>
+              <Autosuggest suggestions={this.state.suggestions}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={inputProps}
+                onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+                onSuggestionSelected={this.onSuggestionSelected.bind(this)}
+              />
+            </Col>
+          </Row>
 
-        {teamMembers}
+          {teamMembers}
 
-        <button>Submit</button>
+          <button>Submit</button>
+        </div>
       </div>
     );
   }
