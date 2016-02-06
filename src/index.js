@@ -14,7 +14,7 @@ import Login from './components/User/Login';
 import Register from './components/User/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 import Invest from './components/Dashboard/Invest';
-import Borrow from './components/Dashboard/Borrow';
+import Borrow from './components/Borrow/Borrow';
 
 require('./styles/styles.scss');
 
@@ -38,10 +38,9 @@ render((
         <IndexRoute component={LandingPage} />
         <Route path='login' component={Login} />
         <Route path='register' component={Register} />
-        <Route path='dashboard' component={Dashboard}>
-          <Route path='invest' component={Invest} />
-          <Route path='borrow' component={Borrow} />
-        </Route>
+        <Route path='dashboard' component={Dashboard} />
+      	<Route path='invest' component={Invest} />
+	    <Route path='borrow' component={Borrow} />
         <Route path='*' component={NotFound} />
       </Route>
     </Router>
