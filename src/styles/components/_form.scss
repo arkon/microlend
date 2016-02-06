@@ -18,8 +18,33 @@ input {
 }
 
 button {
-  background-color: $color-green;
+  background-color: shade($color-green, 15%);
   border: 0;
   border-radius: $radius;
+  color: $color-white;
   padding: 0.25em 1em;
+  position: relative;
+  transition: background-color 0.25s, transform 0.25s;
+
+  &::after {
+    box-shadow: 0 0 1.5em $color-black, 0 0.5em 1em $color-black;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.25s;
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: shade($color-green, 25%);
+    transform: translateY(-2px);
+
+    &::after {
+      opacity: 1;
+    }
+  }
 }
