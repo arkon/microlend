@@ -96,10 +96,10 @@ class Borrow extends React.Component {
         <h1>Borrow</h1>
         <p>Borrow with a group to reduce your interest rate.</p>
 
-        <label>Amount ($)</label>
+        <label>Enter the amount you wish to invest (CAD)</label>
         <input type='number' required />
 
-        <label>Group members</label>
+        <label>Pick your group members</label>
         <table>
           <tbody>
             <tr>

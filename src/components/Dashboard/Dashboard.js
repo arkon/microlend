@@ -16,15 +16,16 @@ class Dashboard extends React.Component {
             <Col>
               <Link to='/dashboard/invest'>
                 <div className='dashboard__tile'>
-                  <h3>Invest</h3>
+                  <h1>Invest</h1>
                   <p>Contribute to a global pool to get promised return.</p>
                 </div>
               </Link>
             </Col>
+
             <Col>
               <Link to='/borrow'>
                 <div className='dashboard__tile'>
-                  <h3>Borrow</h3>
+                  <h1>Borrow</h1>
                   <p>Borrow in a group to get lower interest rates.</p>
                 </div>
               </Link>
@@ -37,10 +38,41 @@ class Dashboard extends React.Component {
 
           <Row>
             <Col>
-              Money invested
+              <h3>Outstanding debts</h3>
+              <ul className='dashboard__list'>
+                <li>
+                  <Link to='/'>
+                    <div>
+                      <h4 className='dashboard__list__title'>Credit card bills</h4>
+                      <p className='dashboard__list__date'>2016-02-06</p>
+                      <p>Me, Alex B, Jonathan W</p>
+                    </div>
+
+                    <div>
+                      <p>Remaining:<br /><span className='dashboard__list__outstanding'>$52.50 CAD</span></p>
+                      <p>Originally borrowed:<br />$250.00  CAD@ 1.07%</p>
+                    </div>
+
+                    <i className='material-icons'>expand_more</i>
+                  </Link>
+                </li>
+              </ul>
             </Col>
+
             <Col>
-              Money borrowed
+              <h3>Investment history</h3>
+              <ul className='dashboard__list'>
+                <li>
+                  <Link to='/'>
+                    <div>
+                      <h4 className='dashboard__list__title'>$500.00 CAD @ 1.05%</h4>
+                      <p className='dashboard__list__date'>2016-02-06</p>
+                    </div>
+
+                    <i className='material-icons'>expand_more</i>
+                  </Link>
+                </li>
+              </ul>
             </Col>
           </Row>
         </section>
