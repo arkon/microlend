@@ -10,7 +10,7 @@ class Payment extends React.Component {
 
         <h2>Credit and debit cards</h2>
 
-        <ul>
+        <ul className='payment__cards'>
           <li>
             <CreditCard data={{
               type: 'VISA',

@@ -33,7 +33,7 @@ class App extends React.Component {
       <div>
         <Header loggedIn={this.state.loggedIn} />
 
-        <main className='content'>
+        <main>
           {this.props.children}
         </main>
 
