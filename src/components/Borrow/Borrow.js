@@ -1,5 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
+import AutosuggestHighlight from 'autosuggest-highlight';
 
 const friends = [
   {
@@ -32,9 +33,29 @@ function getSuggestionValue(suggestion){
   return suggestion.name;
 }
 
-function renderSuggestion(suggestion){
+function renderSuggestion(suggestion, { value, valueBeforeUpDown }){
+
+  const suggestionText = suggestion.name;
+  const query = (valueBeforeUpDown || value).trim();
+  const matches = AutosuggestHighlight.match(suggestionText, query);
+  const parts = AutosuggestHighlight.parse(suggestionText, matches);
+
   const profileImage = '/img/users/' + suggestion.img;
-  return (<span><img src={profileImage} />{suggestion.name}</span>);
+
+  return (<span className='suggestion-content'>
+    <img className='profile-image' src={profileImage} />
+    <span className="name">
+      {
+        parts.map((part, index) => {
+          const className = part.highlight ? 'highlight' : null;
+
+          return (
+            <span className={className} key={index}>{part.text}</span>
+          );
+        })
+      }
+    </span>
+  </span>);
 }
 
 class Borrow extends React.Component {
@@ -88,10 +109,6 @@ class Borrow extends React.Component {
         <table>
           <tbody>
             <tr>
-              <td>Person 1</td>
-              <td><button>Remove</button></td>
-            </tr>
-            <tr>
               <td><Autosuggest suggestions={this.state.suggestions}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
@@ -99,7 +116,6 @@ class Borrow extends React.Component {
                 onSuggestionsUpdateRequested = {this.onSuggestionsUpdateRequested}
                 onSuggestionSelected = {this.onSuggestionSelected}
                 /></td>
-              <td><button>Add</button></td>
             </tr>
             </tbody>
         </table>
