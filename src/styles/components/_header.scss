@@ -22,6 +22,11 @@
 .header__brand {
   font-size: 2em;
   font-weight: 300;
+
+  a {
+    background: url('/img/logo.png') no-repeat left center / contain;
+    padding-left: 3.5rem;
+  }
 }
 
 .header__nav {
