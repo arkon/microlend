@@ -84,13 +84,13 @@ class Borrow extends React.Component {
           <Row>
             <Col>
                 <h3>Maximum Principal</h3>
-                <div>
+                <div className='dashboard__list__title'>
                   ${this.state.maxPrincipal}
                 </div>
             </Col>
             <Col>
               <h3>Effective APR</h3>
-              <div>
+              <div className='dashboard__list__title'>
                 {(this.state.apr * 100).toFixed(1)} %
               </div>
             </Col>
@@ -195,9 +195,8 @@ class Members extends React.Component {
   }
 
   removeTeamMember (index) {
-    this.setState({
-      teamMembers: this.state.teamMembers.splice(index, 1)
-    });
+    teamMembers: this.state.teamMembers.splice(index, 1)
+    this.forceUpdate();
   }
 
     onChange = (event, { newValue }) => {
