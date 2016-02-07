@@ -8,7 +8,6 @@ let chartOptions = {
   bezierCurve: true,
   pointDot: false,
   showTooltips: false,
-  scaleShowLabels: false,
 };
 
 let CurveType = {
