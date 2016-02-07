@@ -14,17 +14,18 @@ class Dashboard extends React.Component {
 
           <Row>
             <Col>
-              <Link to='/dashboard/invest'>
+              <Link to='/invest'>
                 <div className='dashboard__tile'>
-                  <h3>Invest</h3>
+                  <h1>Invest</h1>
                   <p>Contribute to a global pool to get promised return.</p>
                 </div>
               </Link>
             </Col>
+
             <Col>
               <Link to='/borrow'>
                 <div className='dashboard__tile'>
-                  <h3>Borrow</h3>
+                  <h1>Borrow</h1>
                   <p>Borrow in a group to get lower interest rates.</p>
                 </div>
               </Link>
@@ -33,14 +34,51 @@ class Dashboard extends React.Component {
         </section>
 
         <section className='dashboard__section'>
-          <h2>My status</h2>
+          <h2>My portfolio</h2>
 
           <Row>
             <Col>
-              Money invested
+              <h3>Outstanding debts</h3>
+              <ul className='dashboard__list'>
+                <li>
+                  <Link to='/borrowtransaction/1'>
+                    <div>
+                      <h4 className='dashboard__list__title'>Credit card bills</h4>
+                      <p className='dashboard__list__date'>2016-02-06</p>
+                      <p>Me, Alex B, Jonathan W</p>
+                    </div>
+
+                    <div>
+                      <p>Remaining:<br /><span className='dashboard__list__outstanding'>$52.50 CAD</span></p>
+                      <p>Originally borrowed:<br />$250.00 CAD @ 7%</p>
+                    </div>
+
+                    <i className='material-icons'>expand_more</i>
+                  </Link>
+                </li>
+              </ul>
+              <Link to='/borrowtransactions' className='dashboard__list__more'>
+                See full borrowing history
+              </Link>
             </Col>
+
             <Col>
-              Money borrowed
+              <h3>Recent investments</h3>
+              <ul className='dashboard__list'>
+                <li>
+                  <Link to='/investment/1'>
+                    <div>
+                      <h4 className='dashboard__list__title'>$500.00 CAD @ 9%</h4>
+                      <p className='dashboard__list__date'>2016-02-06</p>
+                    </div>
+
+                    <i className='material-icons'>expand_more</i>
+                  </Link>
+                </li>
+              </ul>
+              <Link to='/investments' className='dashboard__list__more'>
+                See full investment history
+              </Link>
             </Col>
           </Row>
         </section>

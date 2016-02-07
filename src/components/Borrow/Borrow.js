@@ -39,8 +39,8 @@ function getSuggestionValue (suggestion) {
   return suggestion.name;
 }
 
-function createProfileImage(fileName){
-        return <img className='react-autosuggest__suggestion__content__photo' src={`/img/users/${fileName}`} />
+function createProfileImage (fileName) {
+  return <img className='react-autosuggest__suggestion__content__photo' src={`/img/users/${fileName}`} />
 }
 
 function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
@@ -126,9 +126,8 @@ class Borrow extends React.Component {
     this.state.teamMembers.push(suggestion);
   }
 
-  getTeamMembers(){
-    var memberMarkup = this.state.teamMembers.map(member => {
-
+  getTeamMembers () {
+    var memberMarkup = this.state.teamMembers.map((member) => {
       var profilePicture = createProfileImage(member.img);
 
       return (
@@ -136,15 +135,16 @@ class Borrow extends React.Component {
           {profilePicture}
           <span>{member.name}</span>
         </span>
-        );
-    })
+      );
+    });
+
     return(
       <Row>
         <Col>
           {memberMarkup}
         </Col>
       </Row>
-      );
+    );
   }
 
   render () {
@@ -158,7 +158,8 @@ class Borrow extends React.Component {
 
     return (
       <div className='container'>
-        <h1>Borrow</h1>
+        <div className='form form--wide'>
+          <h1>Borrow</h1>
         <Row>
           <Col>
               <h3>Maximum Principal</h3>
@@ -179,22 +180,23 @@ class Borrow extends React.Component {
           </Col>
         </Row>
 
-        <label>Amount ($)</label>
-        <input type='number' required />
+          <label>Enter the amount you wish to invest (CAD)</label>
+          <input type='number' required />
 
-        <label>Group members</label>
+          <label>Pick your group members</label>
         <small>Borrow with a group to reduce your interest rate.</small>
-        <Row>
-          <Col>
-            <Autosuggest suggestions={this.state.suggestions}
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              inputProps={inputProps}
-              onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
-              onSuggestionSelected={this.onSuggestionSelected.bind(this)}
-            />
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <Autosuggest suggestions={this.state.suggestions}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={inputProps}
+                onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+                onSuggestionSelected={this.onSuggestionSelected.bind(this)}
+              />
+            </Col>
+          </Row>
+
           {teamMembers}
         <Row>
           <Col>
@@ -207,7 +209,8 @@ class Borrow extends React.Component {
             </table>
           </Col>
         </Row>
-        <button>Submit</button>
+          <button>Submit</button>
+        </div>
       </div>
     );
   }

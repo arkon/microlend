@@ -19,8 +19,14 @@ import Register from './components/Auth/Register';
 import Logout from './components/Auth/Logout';
 
 import Dashboard from './components/Dashboard/Dashboard';
-import Invest from './components/Dashboard/Invest';
+
+import Invest from './components/Invest/Invest';
+import Investments from './components/Invest/Investments';
+import Investment from './components/Invest/Investment';
+
 import Borrow from './components/Borrow/Borrow';
+import BorrowTransactions from './components/Borrow/BorrowTransactions';
+import BorrowTransaction from './components/Borrow/BorrowTransaction';
 
 import Password from './components/User/Password';
 import Payment from './components/User/Payment';
@@ -60,11 +66,17 @@ render((
         <Route path='logout' component={Logout} />
 
         <Route path='dashboard' component={Dashboard} onEnter={requireAuth} />
-        <Route path='invest' component={Invest} onEnter={requireAuth} />
-        <Route path='borrow' component={Borrow} onEnter={requireAuth} />
 
-        <Route path='user/payment' component={Payment} />
-        <Route path='user/password' component={Password} />
+        <Route path='invest' component={Invest} onEnter={requireAuth} />
+        <Route path='investments' component={Investments} onEnter={requireAuth} />
+        <Route path='investment/:itemId' component={Investment} onEnter={requireAuth} />
+
+        <Route path='borrow' component={Borrow} onEnter={requireAuth} />
+        <Route path='borrowtransactions' component={BorrowTransactions} onEnter={requireAuth} />
+        <Route path='borrowtransaction/:itemId' component={BorrowTransaction} onEnter={requireAuth} />
+
+        <Route path='user/payment' component={Payment} onEnter={requireAuth} />
+        <Route path='user/password' component={Password} onEnter={requireAuth} />
 
         <Route path='*' component={NotFound} />
       </Route>

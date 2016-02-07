@@ -8,9 +8,11 @@ const Logout = () => {
 
   return (
     <div className='container'>
-      <h2>You are now logged out.</h2>
+      <div className='form'>
+        <h2>You are now logged out.</h2>
 
-      <IndexLink to='/'>Go home</IndexLink>
+        <IndexLink to='/'>Go home</IndexLink>
+      </div>
     </div>
   );
 };
