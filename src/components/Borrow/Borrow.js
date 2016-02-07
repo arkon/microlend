@@ -4,8 +4,6 @@ import AutosuggestHighlight from 'autosuggest-highlight';
 import ReactHighcharts from 'react-highcharts/bundle/highcharts';
 import { Row, Col } from '../Grid/Grid';
 
-
-
 const startingAPR = 0.082;
 const startingMax = 200;
 
@@ -14,8 +12,6 @@ function calculateInterest(principal, interestRate){
   var totalReturn = principal * Math.pow(( 1 + interestRate/compoundedPerYear )  ,compoundedPerYear * 1);
   return totalReturn - principal;
 }
-
-
 
 class Borrow extends React.Component {
   constructor (props) {
@@ -30,8 +26,7 @@ class Borrow extends React.Component {
     this.chartConfig = this.getChartConfig();
   }
 
-  getChartConfig(){
-
+  getChartConfig () {
     var principalAmounts = [this.state.principal, this.state.principal, this.state.principal];
 
     // Microlend, credit card, Payday loan
@@ -72,10 +67,7 @@ class Borrow extends React.Component {
     return config;
   }
 
-
-
   render () {
-
     return (
       <div className='container'>
         <div className='form form--wide'>
@@ -124,7 +116,6 @@ class Borrow extends React.Component {
     );
   }
 }
-
 
 const friends = [
   {
@@ -184,9 +175,9 @@ function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
 }
 
 class Members extends React.Component {
-
   constructor(props){
     super(props);
+
     this.state = {
       autosuggestValue: '',
       suggestions: getSuggestions(''),
@@ -195,11 +186,15 @@ class Members extends React.Component {
   }
 
   removeTeamMember (index) {
-    teamMembers: this.state.teamMembers.splice(index, 1)
-    this.forceUpdate();
+    var teamMembers = this.state.teamMembers;
+    teamMembers.splice(index, 1);
+
+    this.setState({
+      teamMembers: teamMembers
+    });
   }
 
-    onChange = (event, { newValue }) => {
+  onChange = (event, { newValue }) => {
     this.setState({
       autosuggestValue: newValue
     });
@@ -238,13 +233,13 @@ class Members extends React.Component {
     );
   }
 
-  render(){
-
+  render () {
     const inputProps = {
       placeholder: 'Search in your network',
       value: this.state.autosuggestValue,
       onChange: this.onChange
     };
+
     return(
       <Row>
         <Col>
@@ -261,8 +256,7 @@ class Members extends React.Component {
           {this.getTeamMembers()}
         </Col>
       </Row>
-
-      );
+    );
   }
 }
 
