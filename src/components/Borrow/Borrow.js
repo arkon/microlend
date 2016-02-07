@@ -48,17 +48,15 @@ function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
   const matches = AutosuggestHighlight.match(suggestionText, query);
   const parts = AutosuggestHighlight.parse(suggestionText, matches);
 
-  var profilePicture = createProfileImage(suggestion.img);
-
   return (
     <span className='react-autosuggest__suggestion__content'>
-      {profilePicture}
+      {createProfileImage(suggestion.img)}
       <span className='react-autosuggest__suggestion__content__name'>
         { parts.map((part, index) => {
           const className = part.highlight ? 'react-autosuggest__suggestion__content__name--highlight' : null;
 
           return (
-            <span className={className} key={index}>{part.text}</span>
+            <span key={index} className={className}>{part.text}</span>
           );
         }) }
       </span>
@@ -121,25 +119,35 @@ class Borrow extends React.Component {
   };
 
   onSuggestionSelected (event, { suggestion, suggestionValue, method }) {
-    this.setState({value: ''});
     this.state.teamMembers.push(suggestion);
+
+    this.setState({
+      value: ''
+    });
   }
 
   getTeamMembers () {
     return (
-      <Row>
-        <Col>
-          { this.state.teamMembers.map((member, index) => {
-            return (
-              <span key={index}>
+      <ul className='autosuggest__selected'>
+        { this.state.teamMembers.map((member, index) => {
+          return (
+            <li key={index}>
+              <div className='autosuggest__selected__person'>
                 {createProfileImage(member.img)}
                 <span>{member.name}</span>
-              </span>
-            );
-          }) }
-        </Col>
-      </Row>
+              </div>
+              <i className='material-icons' onClick={this.removeTeamMember.bind(this, index)}>remove_circle_outline</i>
+            </li>
+          );
+        }) }
+      </ul>
     );
+  }
+
+  removeTeamMember (index) {
+    this.setState({
+      teamMembers: this.state.teamMembers.splice(index, 1)
+    });
   }
 
   render () {
@@ -148,8 +156,6 @@ class Borrow extends React.Component {
       value: this.state.value,
       onChange: this.onChange
     };
-
-    var teamMembers = this.getTeamMembers();
 
     return (
       <div className='container'>
@@ -193,32 +199,17 @@ class Borrow extends React.Component {
 
           <label>Pick your group members:</label>
           <small>Borrow with a group to reduce your interest rate.</small>
-          <Row>
-            <Col>
-              <Autosuggest suggestions={this.state.suggestions}
-                getSuggestionValue={getSuggestionValue}
-                renderSuggestion={renderSuggestion}
-                inputProps={inputProps}
-                onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
-                onSuggestionSelected={this.onSuggestionSelected.bind(this)}
-              />
-            </Col>
-          </Row>
 
-          {teamMembers}
-          <Row>
-            <Col>
-              <table>
-                <tbody>
-                  <tr>
+          <Autosuggest suggestions={this.state.suggestions}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            inputProps={inputProps}
+            onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+            onSuggestionSelected={this.onSuggestionSelected.bind(this)} />
 
-                  </tr>
-                </tbody>
-              </table>
-            </Col>
-          </Row>
+          {this.getTeamMembers()}
 
-          <button>Submit</button>
+          <button>Apply</button>
         </div>
       </div>
     );
