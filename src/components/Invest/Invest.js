@@ -1,5 +1,5 @@
 import React from 'react';
-import {Line} from 'react-chartjs';
+import { Line } from 'react-chartjs';
 
 const NUM_POINTS_ON_CHART = 10;
 const REFRESH_THROTTLE = 500;
@@ -28,7 +28,6 @@ generators[CurveType.Exponential] = (x) => {
 };
 
 class Invest extends React.Component {
-
   canRefresh = true;
 
   constructor (props) {
@@ -63,22 +62,22 @@ class Invest extends React.Component {
 
           <label>Return: {this.state.investmentParameters.rateOfReturn}%</label>
           <input type='range'
-                 min="5"
-                 max="20"
+                 min='5'
+                 max='20'
                  value={this.state.investmentParameters.rateOfReturn}
                  onChange={this.changeRateOfReturn} />
 
           <label>Repayment period: {this.state.investmentParameters.repaymentPeriod} months</label>
-          <input type="range"
-                 min="3"
-                 max="20"
+          <input type='range'
+                 min='3'
+                 max='20'
                  value={this.state.investmentParameters.repaymentPeriod}
                  onChange={this.changeRepaymentPeriod} />
 
           <div>
             <Line data={this.state.data}
                   options={this.state.options}
-                  width="400" height="400" />
+                  width='400' height='400' />
           </div>
 
           <button>Submit</button>
@@ -90,14 +89,18 @@ class Invest extends React.Component {
   createInvestmentParamSetter (paramName) {
     return (event) => {
       this.state.investmentParameters[paramName] = event.target.value;
-      this.setState({investmentParameters: this.state.investmentParameters});
-      this.recalculateGraph();
+
+      this.setState({
+        investmentParameters: this.state.investmentParameters
+      }, () => {
+        this.recalculateGraph();
+      });
     };
   }
 
-  changeAmount = this.createInvestmentParamSetter("amount");
-  changeRateOfReturn = this.createInvestmentParamSetter("rateOfReturn");
-  changeRepaymentPeriod = this.createInvestmentParamSetter("repaymentPeriod");
+  changeAmount = this.createInvestmentParamSetter('amount');
+  changeRateOfReturn = this.createInvestmentParamSetter('rateOfReturn');
+  changeRepaymentPeriod = this.createInvestmentParamSetter('repaymentPeriod');
 
   recalculateGraph () {
     if (!this.canRefresh) {
@@ -116,7 +119,7 @@ class Invest extends React.Component {
     this.setState({
       dataPoints: dataPoints,
       data: Invest.createChartData(dataPoints)
-    })
+    });
   }
 
   static getCurveTypeFor ({rateOfReturn, repaymentPeriod}) {
@@ -142,11 +145,11 @@ class Invest extends React.Component {
 
   static createChartData (points) {
     return {
-      labels: Array(points.length).fill().map((_, __) => ""),
-      datasets: [ {
+      labels: Array(points.length).fill().map(_ => ''),
+      datasets: [{
         data: points
-      } ]
-    }
+      }]
+    };
   }
 }
 
