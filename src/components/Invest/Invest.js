@@ -51,31 +51,36 @@ class Invest extends React.Component {
 
   render () {
     return (
-      <div>
-        <h3>Invest</h3>
+      <div className='container'>
+        <div className='form form--wide'>
+          <h1>Invest</h1>
+          <p>Grow your money by investing in the global pool.</p>
 
-        <label>Amount ($)</label>
-        <input type='number'
-               required
-               onChange={this.changeAmount} />
+          <label>Enter the amount you wish to borrow (CAD)</label>
+          <input type='number'
+                 required
+                 onChange={this.changeAmount} />
 
-        <label>Return (%)</label>
-        <input type='range'
-               min="5"
-               max="20"
-               value={this.state.investmentParameters.rateOfReturn}
-               onChange={this.changeRateOfReturn} />
+          <label>Return (%)</label>
+          <input type='range'
+                 min="5"
+                 max="20"
+                 value={this.state.investmentParameters.rateOfReturn}
+                 onChange={this.changeRateOfReturn} />
 
-        <label>Repayment Period</label>
-        <input type="range"
-               value={this.state.investmentParameters.repaymentPeriod}
-               onChange={this.changeRepaymentPeriod} />
+          <label>Repayment Period</label>
+          <input type="range"
+                 value={this.state.investmentParameters.repaymentPeriod}
+                 onChange={this.changeRepaymentPeriod} />
 
-        <Line data={this.state.data}
-              options={this.state.options}
-              width="400" height="400" />
+          <div>
+            <Line data={this.state.data}
+                  options={this.state.options}
+                  width="400" height="400" />
+          </div>
 
-        <button>Submit</button>
+          <button>Submit</button>
+        </div>
       </div>
     );
   }

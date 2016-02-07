@@ -3,7 +3,8 @@ label {
   margin: 0.25em 0;
 }
 
-input {
+input,
+select {
   background-color: $color-grey-200;
   border: 1px solid $color-teal;
   border-radius: $radius;
@@ -16,6 +17,36 @@ input {
   &:hover,
   &:focus {
     background-color: $color-white;
+  }
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  background: $color-grey-400;
+  border: 0;
+  border-radius: 2px;
+  display: inline-block;
+  height: 0.4em;
+  margin-right: 0.75em;
+  padding: 0;
+  vertical-align: middle;
+
+&::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: $color-white;
+    border: 2px solid $color-teal;
+    border-radius: 50%;
+    height: 1.15em;
+    transition: background-color 0.3s;
+    width: 1.15em;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: ew-resize;
   }
 }
 
@@ -59,8 +90,9 @@ button {
 }
 
 .form {
-  border-radius: $radius;
   border: 1px solid $color-teal;
+  border-radius: $radius;
+  box-shadow: 0 0.1em 0.15em rgba($color-black, 0.5);
   margin: 3em auto;
   max-width: 25em;
   padding: 1.5em;
