@@ -8,7 +8,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --progress --colors",
-    "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors",
     "start": "node server.js"
   },
   "repository": {
@@ -49,7 +48,9 @@
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
+    "webpack-dev-middleware": "^1.5.1",
     "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.6.4",
     "wu": "^2.1.0"
   }
 }
