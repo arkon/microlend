@@ -126,6 +126,16 @@ class Borrow extends React.Component {
     this.state.teamMembers.push(suggestion);
   }
 
+  startChat = () => {
+    this.setState({startChat: true});
+  };
+
+  getChat = () => {
+    var chatiFrame = (<iframe src="https://appear.in/microlend" width="700" height="600" frameborder="0"></iframe>);
+    var launchButton = <button onClick={this.startChat}>Questions? Launch Chat</button>;
+    return this.state.startChat ? chatiFrame : launchButton;
+  };
+
   getTeamMembers () {
     var memberMarkup = this.state.teamMembers.map((member) => {
       var profilePicture = createProfileImage(member.img);
@@ -155,6 +165,7 @@ class Borrow extends React.Component {
     };
 
     var teamMembers = this.getTeamMembers();
+    var chat = this.getChat();
 
     return (
       <div className='container'>
@@ -208,6 +219,9 @@ class Borrow extends React.Component {
               </tbody>
             </table>
           </Col>
+        </Row>
+        <Row>
+          {chat}
         </Row>
           <button>Submit</button>
         </div>
