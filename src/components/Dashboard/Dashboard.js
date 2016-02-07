@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
               <h3>Outstanding debts</h3>
               <ul className='dashboard__list'>
                 <li>
-                  <Link to='/'>
+                  <Link to='/borrowtransaction/1'>
                     <div>
                       <h4 className='dashboard__list__title'>Credit card bills</h4>
                       <p className='dashboard__list__date'>2016-02-06</p>
@@ -57,7 +57,7 @@ class Dashboard extends React.Component {
                   </Link>
                 </li>
               </ul>
-              <Link to='' className='dashboard__list__more'>
+              <Link to='/borrowtransactions' className='dashboard__list__more'>
                 See full borrowing history
               </Link>
             </Col>
@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
               <h3>Recent investments</h3>
               <ul className='dashboard__list'>
                 <li>
-                  <Link to='/'>
+                  <Link to='/investment/1'>
                     <div>
                       <h4 className='dashboard__list__title'>$500.00 CAD @ 1.09%</h4>
                       <p className='dashboard__list__date'>2016-02-06</p>
@@ -76,7 +76,7 @@ class Dashboard extends React.Component {
                   </Link>
                 </li>
               </ul>
-              <Link to='' className='dashboard__list__more'>
+              <Link to='/investments' className='dashboard__list__more'>
                 See full investment history
               </Link>
             </Col>
