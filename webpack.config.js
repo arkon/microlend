@@ -22,6 +22,15 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false
+      }
+    })
+  ],
   devServer: {
     contentBase: path.resolve(__dirname, 'static'),
     stats: { chunkModules: false },
