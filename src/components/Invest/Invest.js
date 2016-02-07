@@ -16,15 +16,18 @@ let CurveType = {
   Exponential: 3
 };
 
-let generators = { };
-generators[CurveType.Linear] = (x) => {
-  return x;
-};
-generators[CurveType.Quadratic] = (x) => {
-  return x * x;
-};
-generators[CurveType.Exponential] = (x) => {
-  return Math.pow(2, x);
+let generators = {
+  [CurveType.Linear]: (x) => {
+    return x;
+  },
+
+  [CurveType.Quadratic]: (x) => {
+    return x * x;
+  },
+
+  [CurveType.Exponential]: (x) => {
+    return Math.pow(2, x);
+  }
 };
 
 class Invest extends React.Component {
