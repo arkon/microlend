@@ -5,11 +5,30 @@ class Register extends React.Component {
     return (
       <div className='container'>
         <div className='form'>
-          <h1>Register</h1>
+          <h1>Apply today</h1>
 
           <div>
-            <label>Username</label>
+            <label>First name</label>
             <input type='text' required />
+          </div>
+
+          <div>
+            <label>Last name</label>
+            <input type='text' required />
+          </div>
+
+          <div>
+            <label>Date of birth</label>
+            <input type='text' placeholder='YYYY/MM/DD' required />
+          </div>
+
+          <div>
+            <label>Marital status</label>
+            <select>
+              <option>Single</option>
+              <option>Married</option>
+              <option>Divorced</option>
+            </select>
           </div>
 
           <div>
