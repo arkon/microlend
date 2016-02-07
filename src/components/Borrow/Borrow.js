@@ -71,6 +71,14 @@ class Borrow extends React.Component {
     this.setState({principal: p});
   }
 
+  onTeamMembersChange(count){
+    const MAX_TEAM_SIZE = 5;
+    const fractionOfMax = count / MAX_TEAM_SIZE;
+    const teamFactor = 1 - fractionOfMax;
+    var newAPR = startingAPR * teamFactor;
+    this.setState({apr: newAPR});
+  }
+
   render () {
     var chartConfig = this.getChartConfig();
 
@@ -114,7 +122,7 @@ class Borrow extends React.Component {
             <option>Something else</option>
           </select>
 
-          <Members />
+          <Members onMemberChange={this.onTeamMembersChange.bind(this)} />
 
           <button>Apply</button>
         </div>
@@ -198,6 +206,8 @@ class Members extends React.Component {
     this.setState({
       teamMembers: teamMembers
     });
+
+    this.props.onMemberChange(this.state.teamMembers.length);
   }
 
   onChange = (event, { newValue }) => {
@@ -219,6 +229,7 @@ class Members extends React.Component {
     this.setState({
       autosuggestValue: ''
     });
+    this.props.onMemberChange(this.state.teamMembers.length);
   }
 
   getTeamMembers () {
