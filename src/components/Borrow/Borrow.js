@@ -23,7 +23,7 @@ const friends = [
   }
 ];
 
-const startingAPR = 5.2;
+const startingAPR = 0.082;
 const startingMax = 200;
 
 function getSuggestions (value) {
@@ -40,6 +40,12 @@ function getSuggestionValue (suggestion) {
 
 function createProfileImage (fileName) {
   return <img className='react-autosuggest__suggestion__content__photo' src={`/img/users/${fileName}`} />
+}
+
+function calculateInterest(principal, interestRate){
+  var compoundedPerYear = 12;
+  var totalReturn = principal * Math.pow(( 1 + interestRate/compoundedPerYear )  ,compoundedPerYear * 1);
+  return totalReturn - principal;
 }
 
 function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
@@ -68,7 +74,31 @@ class Borrow extends React.Component {
   constructor (props) {
     super(props);
 
-    this.chartConfig = {
+    this.state = {
+      autosuggestValue: '',
+      suggestions: getSuggestions(''),
+      teamMembers: [],
+      apr: startingAPR,
+      maxPrincipal: startingMax,
+      principal: startingMax
+    };
+
+    this.chartConfig = this.getChartConfig();
+  }
+
+  getChartConfig(){
+
+    var principalAmounts = [this.state.principal, this.state.principal, this.state.principal];
+
+    // Microlend, credit card, Payday loan
+    var interestRates = [this.state.apr, 0.21, 0.4];
+    var interestAmounts = [];
+
+    for (var i = 0; i < interestRates.length; i++) {
+      interestAmounts[i] = calculateInterest(this.state.principal, interestRates[i]);
+    };
+
+    var config = {
       chart: {
         type: 'column'
       },
@@ -86,23 +116,16 @@ class Borrow extends React.Component {
       series: [
         {
           name:'Interest',
-          data:[30, 90, 234]
+          data:interestAmounts
         },
         {
           name:'Principal',
-          data: [250, 250, 250]
+          data: principalAmounts
         }
       ]
     };
 
-    this.state = {
-      autosuggestValue: '',
-      suggestions: getSuggestions(''),
-      teamMembers: [],
-      apr: startingAPR,
-      maxPrincipal: startingMax,
-      principal: startingMax
-    };
+    return config;
   }
 
   onChange = (event, { newValue }) => {
