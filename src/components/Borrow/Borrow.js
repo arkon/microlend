@@ -96,17 +96,18 @@ class Borrow extends React.Component {
     };
 
     this.state = {
-      value: '',
+      autosuggestValue: '',
       suggestions: getSuggestions(''),
       teamMembers: [],
       apr: startingAPR,
-      maxPrincipal: startingMax
+      maxPrincipal: startingMax,
+      principal: startingMax
     };
   }
 
   onChange = (event, { newValue }) => {
     this.setState({
-      value: newValue
+      autosuggestValue: newValue
     });
 
     console.log('Search changed');
@@ -120,9 +121,8 @@ class Borrow extends React.Component {
 
   onSuggestionSelected (event, { suggestion, suggestionValue, method }) {
     this.state.teamMembers.push(suggestion);
-
     this.setState({
-      value: ''
+      autosuggestValue: ''
     });
   }
 
@@ -153,7 +153,7 @@ class Borrow extends React.Component {
   render () {
     const inputProps = {
       placeholder: 'Search in your network',
-      value: this.state.value,
+      value: this.state.autosuggestValue,
       onChange: this.onChange
     };
 
@@ -183,7 +183,7 @@ class Borrow extends React.Component {
           </Row>
 
           <label>Enter the amount you wish to invest:</label>
-          <input type='number' placeholder='Amount (CAD)' required />
+          <input type='number' required value={this.state.principal} />
 
           <label>Select loan purpose:</label>
           <select>
