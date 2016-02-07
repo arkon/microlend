@@ -1,8 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { Line } from 'react-chartjs';
 
 const NUM_POINTS_ON_CHART = 10;
 const REFRESH_THROTTLE = 500;
+
+const CompletedMessage = () => {
+  return (
+    <div>
+      <p>Congratulations! Your investment has been added to the pool.</p>
+      <p>You will recieve a confirmation email shortly.</p>
+
+      <Link to='dashboard'><button>Back to dashboard</button></Link>
+    </div>
+  );
+};
 
 let chartOptions = {
   bezierCurve: true,
@@ -39,6 +51,8 @@ class Invest extends React.Component {
     let dataPoints = this.generatePoints(CurveType.Quadratic, 5000, NUM_POINTS_ON_CHART);
 
     this.state = {
+      completed: false,
+
       data: Invest.createChartData(dataPoints),
       dataPoints: dataPoints,
       options: chartOptions,
@@ -49,6 +63,14 @@ class Invest extends React.Component {
         repaymentPeriod: 10
       }
     };
+
+    this.invest = this.invest.bind(this);
+  }
+
+  invest () {
+    this.setState({
+      completed: true
+    });
   }
 
   render () {
@@ -56,35 +78,40 @@ class Invest extends React.Component {
       <div className='container'>
         <div className='form form--wide'>
           <h1>Invest</h1>
-          <p>Grow your money by investing in the global pool.</p>
 
-          <label>Enter the amount you wish to borrow:</label>
-          <input type='number'
-                 required
-                 placeholder='Amount (CAD)'
-                 onChange={this.changeAmount} />
+          { this.state.completed ? <CompletedMessage /> :
+            <div>
+              <p>Grow your money by investing in the global pool.</p>
 
-          <label>Return: {this.state.investmentParameters.rateOfReturn}%</label>
-          <input type='range'
-                 min='5'
-                 max='20'
-                 value={this.state.investmentParameters.rateOfReturn}
-                 onChange={this.changeRateOfReturn} />
+              <label>Enter the amount you wish to borrow:</label>
+              <input type='number'
+                     required
+                     placeholder='Amount (CAD)'
+                     onChange={this.changeAmount} />
 
-          <label>Repayment period: {this.state.investmentParameters.repaymentPeriod} months</label>
-          <input type='range'
-                 min='3'
-                 max='20'
-                 value={this.state.investmentParameters.repaymentPeriod}
-                 onChange={this.changeRepaymentPeriod} />
+              <label>Return: {this.state.investmentParameters.rateOfReturn}%</label>
+              <input type='range'
+                     min='5'
+                     max='20'
+                     value={this.state.investmentParameters.rateOfReturn}
+                     onChange={this.changeRateOfReturn} />
 
-          <div>
-            <Line data={this.state.data}
-                  options={this.state.options}
-                  width='400' height='400' />
-          </div>
+              <label>Repayment period: {this.state.investmentParameters.repaymentPeriod} months</label>
+              <input type='range'
+                     min='3'
+                     max='20'
+                     value={this.state.investmentParameters.repaymentPeriod}
+                     onChange={this.changeRepaymentPeriod} />
 
-          <button>Submit</button>
+              <div>
+                <Line data={this.state.data}
+                      options={this.state.options}
+                      width='400' height='400' />
+              </div>
+
+              <button onClick={this.invest}>Submit</button>
+            </div>
+          }
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlight from 'autosuggest-highlight';
 import ReactHighcharts from 'react-highcharts/bundle/highcharts';
@@ -7,9 +8,20 @@ import { Row, Col } from '../Grid/Grid';
 const startingAPR = 0.082;
 const startingMax = 200;
 
-function calculateInterest(principal, interestRate){
+const CompletedMessage = () => {
+  return (
+    <div>
+      <p>Congratulations! You have been approved.</p>
+      <p>You will recieve a confirmation email shortly.</p>
+
+      <Link to='dashboard'><button>Back to dashboard</button></Link>
+    </div>
+  );
+};
+
+function calculateInterest (principal, interestRate) {
   var compoundedPerYear = 12;
-  var totalReturn = principal * Math.pow(( 1 + interestRate/compoundedPerYear )  ,compoundedPerYear * 1);
+  var totalReturn = principal * Math.pow(( 1 + interestRate/compoundedPerYear ), compoundedPerYear * 1);
   return totalReturn - principal;
 }
 
@@ -18,11 +30,13 @@ class Borrow extends React.Component {
     super(props);
 
     this.state = {
+      completed: false,
       apr: startingAPR,
       maxPrincipal: startingMax,
       principal: startingMax
     };
 
+    this.apply = this.apply.bind(this);
   }
 
   getChartConfig () {
@@ -60,15 +74,25 @@ class Borrow extends React.Component {
           name:'Principal',
           data: principalAmounts
         }
-      ]
+      ],
+      credits: {
+        enabled: false
+      }
     };
 
     return config;
   }
 
-  onPrincipalChange(e){
-    var p = parseFloat(e.target.value);
-    this.setState({principal: p});
+  apply () {
+    this.setState({
+      completed: true
+    });
+  }
+
+  onPrincipalChange (e) {
+    this.setState({
+      principal: parseFloat(e.target.value)
+    });
   }
 
   onTeamMembersChange(count){
@@ -87,44 +111,49 @@ class Borrow extends React.Component {
         <div className='form form--wide'>
           <h1>Borrow</h1>
 
-          <Row>
-            <Col>
-                <h3>Maximum Principal</h3>
-                <div className='dashboard__list__title'>
-                  ${this.state.maxPrincipal}
-                </div>
-            </Col>
-            <Col>
-              <h3>Effective APR</h3>
-              <div className='dashboard__list__title'>
-                {(this.state.apr * 100).toFixed(1)} %
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <ReactHighcharts config={chartConfig} />
-            </Col>
-          </Row>
+          { this.state.completed ? <CompletedMessage /> :
+            <div>
+              <Row>
+                <Col>
+                    <h3>Maximum Principal</h3>
+                    <div className='dashboard__list__title'>
+                      ${this.state.maxPrincipal}
+                    </div>
+                </Col>
+                <Col>
+                  <h3>Effective APR</h3>
+                  <div className='dashboard__list__title'>
+                    {(this.state.apr * 100).toFixed(1)} %
+                  </div>
+                </Col>
+              </Row>
 
-          <label>Enter the amount you wish to borrow:</label>
-          <input type='number' required value={this.state.principal} onChange={this.onPrincipalChange.bind(this)} />
+              <Row>
+                <Col>
+                  <ReactHighcharts config={chartConfig} />
+                </Col>
+              </Row>
 
-          <label>Select loan purpose:</label>
-          <select>
-            <option>Choose one...</option>
-            <option>Pay off credit card bills</option>
-            <option>Buy a car</option>
-            <option>Home renovations</option>
-            <option>School</option>
-            <option>Pay for my wedding</option>
-            <option>Start a business</option>
-            <option>Something else</option>
-          </select>
+              <label>Enter the amount you wish to borrow:</label>
+              <input type='number' required value={this.state.principal} onChange={this.onPrincipalChange.bind(this)} />
 
-          <Members onMemberChange={this.onTeamMembersChange.bind(this)} />
+              <label>Select loan purpose:</label>
+              <select>
+                <option>Choose one...</option>
+                <option>Pay off credit card bills</option>
+                <option>Buy a car</option>
+                <option>Home renovations</option>
+                <option>School</option>
+                <option>Pay for my wedding</option>
+                <option>Start a business</option>
+                <option>Something else</option>
+              </select>
 
-          <button>Apply</button>
+              <Members onMemberChange={this.onTeamMembersChange.bind(this)} />
+
+              <button onClick={this.apply}>Apply</button>
+            </div>
+          }
         </div>
       </div>
     );
@@ -277,7 +306,4 @@ class Members extends React.Component {
   }
 }
 
-
 export default Borrow;
-
-
