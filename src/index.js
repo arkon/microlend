@@ -63,7 +63,7 @@ render((
 
         <Route path='login' component={Login} />
         <Route path='register' component={Register} />
-        <Route path='logout' component={Logout} />
+        <Route path='logout' component={Logout} onEnter={requireAuth} />
 
         <Route path='dashboard' component={Dashboard} onEnter={requireAuth} />
 

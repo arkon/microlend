@@ -11,7 +11,9 @@ const Logout = () => {
       <div className='form'>
         <h2>You are now logged out.</h2>
 
-        <IndexLink to='/'>Go home</IndexLink>
+        <IndexLink to='/'>
+          <button>Go home</button>
+        </IndexLink>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import auth from '../Auth/Auth';
 import { Row, Col } from '../Grid/Grid';
 
 const LandingPage = (props) => {
@@ -12,9 +13,11 @@ const LandingPage = (props) => {
           <p>Fixed rates from 5% - 15% with no additional fees.</p>
           <p>Borrow in groups for better rates, or help others by investing.</p>
 
-          <Link to='/register'>
-            <button className='button--teal'>Apply today</button>
-          </Link>
+          { !auth.loggedIn() &&
+            <Link to='/register'>
+              <button className='button--teal'>Apply today</button>
+            </Link>
+          }
         </div>
       </section>
 

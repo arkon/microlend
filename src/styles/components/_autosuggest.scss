@@ -56,3 +56,38 @@
     color: $color-black;
   }
 }
+
+.autosuggest__selected {
+  list-style: none;
+  margin-top: 1em;
+
+  li {
+    align-items: center;
+    border-bottom: 1px solid $color-grey-500;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 0;
+
+    &:first-child {
+      border-top: 1px solid $color-grey-500;
+    }
+
+    .material-icons {
+      color: $color-grey-400;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-white;
+      }
+    }
+  }
+}
+
+  .autosuggest__selected__person {
+    align-items: center;
+    display: flex;
+
+    img {
+      margin-right: 1em;
+    }
+  }
