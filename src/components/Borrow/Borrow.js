@@ -2,6 +2,7 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlight from 'autosuggest-highlight';
 import { Row, Col } from '../Grid/Grid';
+import ReactHighcharts from 'react-highcharts/bundle/highcharts';
 
 const friends = [
   {
@@ -21,6 +22,10 @@ const friends = [
     img: 'stephanie.jpg'
   }
 ];
+
+const startingAPR = 5.2;
+const startingMax = 200;
+
 
 function getSuggestions (value) {
   const inputValue = value.trim().toLowerCase();
@@ -63,15 +68,44 @@ function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
 }
 
 class Borrow extends React.Component {
+
   constructor (props) {
     super(props);
+
+  this.chartConfig = {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Rate Comparison'
+      },
+      xAxis: {
+        categories: ['Microlend', 'Credit Card', 'Payday Loan']
+      },
+      plotOptions: {
+        column: {
+          stacking: 'normal'
+        }
+      },
+      series: [
+      {
+        name:'Interest',
+        data:[30, 90, 234]
+      },{
+        name:'Principal',
+        data: [250, 250, 250]
+      }]
+    };
 
     this.state = {
       value: '',
       suggestions: getSuggestions(''),
-      teamMembers: []
+      teamMembers: [],
+      apr: startingAPR,
+      maxPrincipal: startingMax
     };
   }
+
 
   onChange = (event, { newValue }) => {
     this.setState({
@@ -88,8 +122,7 @@ class Borrow extends React.Component {
   };
 
   onSuggestionSelected (event, { suggestion, suggestionValue, method }) {
-    console.log(suggestion);
-    console.log(suggestionValue);
+    this.setState({value: ''});
     this.state.teamMembers.push(suggestion);
   }
 
@@ -126,13 +159,31 @@ class Borrow extends React.Component {
     return (
       <div className='container'>
         <h1>Borrow</h1>
-        <p>Borrow with a group to reduce your interest rate.</p>
+        <Row>
+          <Col>
+              <h3>Maximum Principal</h3>
+              <div>
+                {this.state.maxPrincipal}
+              </div>
+          </Col>
+          <Col>
+            <h3>Effective APR</h3>
+            <div>
+              {this.state.apr}
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <ReactHighcharts config={this.chartConfig} />
+          </Col>
+        </Row>
 
         <label>Amount ($)</label>
         <input type='number' required />
 
         <label>Group members</label>
-
+        <small>Borrow with a group to reduce your interest rate.</small>
         <Row>
           <Col>
             <Autosuggest suggestions={this.state.suggestions}
@@ -145,6 +196,17 @@ class Borrow extends React.Component {
           </Col>
         </Row>
           {teamMembers}
+        <Row>
+          <Col>
+            <table>
+              <tbody>
+                <tr>
+
+                </tr>
+              </tbody>
+            </table>
+          </Col>
+        </Row>
         <button>Submit</button>
       </div>
     );
