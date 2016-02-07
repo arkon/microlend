@@ -16,6 +16,38 @@
   padding: 1em;
 }
 
-.dashboard__subcontent {
-  margin-top: 1em;
+.dashboard__list {
+  border-top: 1px solid $color-grey-600;
+  list-style: none;
+  margin-top: 0.5em;
+
+  li {
+    border-bottom: 1px solid $color-grey-600;
+    font-weight: 300;
+
+    a {
+      color: $color-white;
+      display: flex;
+      justify-content: space-between;
+      padding: 1em 0;
+    }
+  }
+
+  .material-icons {
+    align-self: center;
+    transform: rotate(-90deg);
+  }
 }
+
+  .dashboard__list__title {
+    font-size: 1.35em;
+  }
+
+  .dashboard__list__date {
+    font-size: 0.85em;
+  }
+
+  .dashboard__list__outstanding {
+    color: $color-red;
+    font-weight: 600;
+  }

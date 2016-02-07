@@ -25,7 +25,11 @@
 }
 
 .header__nav {
-  a + a {
-    margin-left: 2em;
+  a {
+    padding: 1em 0;
+
+    + a {
+      margin-left: 2em;
+    }
   }
 }

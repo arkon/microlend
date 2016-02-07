@@ -1,0 +1,19 @@
+.payment__cards {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0.5em;
+    padding: 1em 0;
+    vertical-align: top;
+  }
+
+  .credit_card {
+    margin-bottom: 0.5em;
+  }
+
+  a + a::before {
+    content: '•';
+    margin: 0 0.5em;
+  }
+}

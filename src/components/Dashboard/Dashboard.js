@@ -10,43 +10,79 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
 
         <section className='dashboard__section'>
-          <h2>My status</h2>
-
-          <Row>
-            <Col>
-              Money invested
-            </Col>
-            <Col>
-              Money borrowed
-            </Col>
-          </Row>
-        </section>
-
-        <section className='dashboard__section'>
           <h2>Refinance</h2>
 
           <Row>
             <Col>
               <Link to='/invest'>
                 <div className='dashboard__tile'>
-                  <h3>Invest</h3>
+                  <h1>Invest</h1>
                   <p>Contribute to a global pool to get promised return.</p>
                 </div>
               </Link>
             </Col>
+
             <Col>
               <Link to='/borrow'>
                 <div className='dashboard__tile'>
-                  <h3>Borrow</h3>
+                  <h1>Borrow</h1>
                   <p>Borrow in a group to get lower interest rates.</p>
                 </div>
               </Link>
             </Col>
           </Row>
+        </section>
 
-          <div className='dashboard__subcontent'>
-            {this.props.children}
-          </div>
+        <section className='dashboard__section'>
+          <h2>My status</h2>
+
+          <Row>
+            <Col>
+              <h3>Outstanding debts</h3>
+              <ul className='dashboard__list'>
+                <li>
+                  <Link to='/'>
+                    <div>
+                      <h4 className='dashboard__list__title'>Credit card bills</h4>
+                      <p className='dashboard__list__date'>2016-02-06</p>
+                      <p>Me, Alex B, Jonathan W</p>
+                    </div>
+
+                    <div>
+                      <p>Remaining:<br /><span className='dashboard__list__outstanding'>$52.50 CAD</span></p>
+                      <p>Originally borrowed:<br />$250.00  CAD@ 1.07%</p>
+                    </div>
+
+                    <i className='material-icons'>expand_more</i>
+                  </Link>
+                </li>
+              </ul>
+            </Col>
+
+            <Col>
+              <h3>Investment history</h3>
+              <ul className='dashboard__list'>
+                <li>
+                  <Link to='/'>
+                    <div>
+                      <h4 className='dashboard__list__title'>$500.00 CAD @ 1.05%</h4>
+                      <p className='dashboard__list__date'>2016-02-06</p>
+                    </div>
+
+                    <i className='material-icons'>expand_more</i>
+                  </Link>
+                </li>
+              </ul>
+            </Col>
+          </Row>
+        </section>
+
+        <section className='dashboard__section'>
+          <h2>My account</h2>
+
+          <p><Link to='/user/payment'>Manage payment methods</Link></p>
+          <p><Link to='/user/password'>Change password</Link></p>
+          <p><a href='mailto:contact@microlend.com'>Contact support</a></p>
         </section>
       </div>
     );
