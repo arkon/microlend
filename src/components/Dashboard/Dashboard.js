@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
         </section>
 
         <section className='dashboard__section'>
-          <h2>My status</h2>
+          <h2>My portfolio</h2>
 
           <Row>
             <Col>
@@ -57,15 +57,18 @@ class Dashboard extends React.Component {
                   </Link>
                 </li>
               </ul>
+              <Link to='' className='dashboard__list__more'>
+                See full borrowing history
+              </Link>
             </Col>
 
             <Col>
-              <h3>Investment history</h3>
+              <h3>Recent investments</h3>
               <ul className='dashboard__list'>
                 <li>
                   <Link to='/'>
                     <div>
-                      <h4 className='dashboard__list__title'>$500.00 CAD @ 1.05%</h4>
+                      <h4 className='dashboard__list__title'>$500.00 CAD @ 1.09%</h4>
                       <p className='dashboard__list__date'>2016-02-06</p>
                     </div>
 
@@ -73,6 +76,9 @@ class Dashboard extends React.Component {
                   </Link>
                 </li>
               </ul>
+              <Link to='' className='dashboard__list__more'>
+                See full investment history
+              </Link>
             </Col>
           </Row>
         </section>
