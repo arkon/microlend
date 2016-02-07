@@ -68,7 +68,7 @@ class Dashboard extends React.Component {
                 <li>
                   <Link to='/investment/1'>
                     <div>
-                      <h4 className='dashboard__list__title'>$500.00 CAD @ 9%</h4>
+                      <h4 className='dashboard__list__title'>$50.00 CAD @ 9%</h4>
                       <p className='dashboard__list__date'>2016-02-06</p>
                     </div>
 

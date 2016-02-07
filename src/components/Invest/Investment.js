@@ -8,7 +8,7 @@ class Investment extends React.Component {
 
         <dl>
           <dd>Amount invested</dd>
-          <dt>$500.00 CAD @ 9%</dt>
+          <dt>$50.00 CAD @ 9%</dt>
 
           <dd>Date invested</dd>
           <dt>2016-02-06</dt>
