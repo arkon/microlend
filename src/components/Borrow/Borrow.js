@@ -4,43 +4,10 @@ import AutosuggestHighlight from 'autosuggest-highlight';
 import ReactHighcharts from 'react-highcharts/bundle/highcharts';
 import { Row, Col } from '../Grid/Grid';
 
-const friends = [
-  {
-    name: 'Eugene Cheung',
-    img: 'eugene.jpg'
-  },
-  {
-    name: 'Peter Newhook',
-    img:'peter.png'
-  },
-  {
-    name: 'Spencer Elliott',
-    img: 'spencer.jpg'
-  },
-  {
-    name: 'Stephanie Sutanto',
-    img: 'stephanie.jpg'
-  }
-];
+
 
 const startingAPR = 0.082;
 const startingMax = 200;
-
-function getSuggestions (value) {
-  const inputValue = value.trim().toLowerCase();
-
-  return value.length === 0 ? [] : friends.filter(person =>
-    person.name.toLowerCase().indexOf(inputValue) !== -1
-  );
-}
-
-function getSuggestionValue (suggestion) {
-  return suggestion.name;
-}
-
-function createProfileImage (fileName) {
-  return <img className='react-autosuggest__suggestion__content__photo' src={`/img/users/${fileName}`} />
-}
 
 function calculateInterest(principal, interestRate){
   var compoundedPerYear = 12;
@@ -48,36 +15,13 @@ function calculateInterest(principal, interestRate){
   return totalReturn - principal;
 }
 
-function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
-  const suggestionText = suggestion.name;
-  const query = (valueBeforeUpDown || value).trim();
-  const matches = AutosuggestHighlight.match(suggestionText, query);
-  const parts = AutosuggestHighlight.parse(suggestionText, matches);
 
-  return (
-    <span className='react-autosuggest__suggestion__content'>
-      {createProfileImage(suggestion.img)}
-      <span className='react-autosuggest__suggestion__content__name'>
-        { parts.map((part, index) => {
-          const className = part.highlight ? 'react-autosuggest__suggestion__content__name--highlight' : null;
-
-          return (
-            <span key={index} className={className}>{part.text}</span>
-          );
-        }) }
-      </span>
-    </span>
-  );
-}
 
 class Borrow extends React.Component {
   constructor (props) {
     super(props);
 
     this.state = {
-      autosuggestValue: '',
-      suggestions: getSuggestions(''),
-      teamMembers: [],
       apr: startingAPR,
       maxPrincipal: startingMax,
       principal: startingMax
@@ -128,7 +72,135 @@ class Borrow extends React.Component {
     return config;
   }
 
-  onChange = (event, { newValue }) => {
+
+
+  render () {
+
+    return (
+      <div className='container'>
+        <div className='form form--wide'>
+          <h1>Borrow</h1>
+
+          <Row>
+            <Col>
+                <h3>Maximum Principal</h3>
+                <div>
+                  ${this.state.maxPrincipal}
+                </div>
+            </Col>
+            <Col>
+              <h3>Effective APR</h3>
+              <div>
+                {(this.state.apr * 100).toFixed(1)} %
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <ReactHighcharts config={this.chartConfig} />
+            </Col>
+          </Row>
+
+          <label>Enter the amount you wish to borrow:</label>
+          <input type='number' required value={this.state.principal} />
+
+          <label>Select loan purpose:</label>
+          <select>
+            <option>Choose one...</option>
+            <option>Pay off credit card bills</option>
+            <option>Buy a car</option>
+            <option>Home renovations</option>
+            <option>School</option>
+            <option>Pay for my wedding</option>
+            <option>Start a business</option>
+            <option>Something else</option>
+          </select>
+
+          <Members />
+
+          <button>Apply</button>
+        </div>
+      </div>
+    );
+  }
+}
+
+
+const friends = [
+  {
+    name: 'Eugene Cheung',
+    img: 'eugene.jpg'
+  },
+  {
+    name: 'Peter Newhook',
+    img:'peter.png'
+  },
+  {
+    name: 'Spencer Elliott',
+    img: 'spencer.jpg'
+  },
+  {
+    name: 'Stephanie Sutanto',
+    img: 'stephanie.jpg'
+  }
+];
+
+function getSuggestions (value) {
+  const inputValue = value.trim().toLowerCase();
+
+  return value.length === 0 ? [] : friends.filter(person =>
+    person.name.toLowerCase().indexOf(inputValue) !== -1
+  );
+}
+
+function getSuggestionValue (suggestion) {
+  return suggestion.name;
+}
+
+function createProfileImage (fileName) {
+  return <img className='react-autosuggest__suggestion__content__photo' src={`/img/users/${fileName}`} />
+}
+
+function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
+  const suggestionText = suggestion.name;
+  const query = (valueBeforeUpDown || value).trim();
+  const matches = AutosuggestHighlight.match(suggestionText, query);
+  const parts = AutosuggestHighlight.parse(suggestionText, matches);
+
+  return (
+    <span className='react-autosuggest__suggestion__content'>
+      {createProfileImage(suggestion.img)}
+      <span className='react-autosuggest__suggestion__content__name'>
+        { parts.map((part, index) => {
+          const className = part.highlight ? 'react-autosuggest__suggestion__content__name--highlight' : null;
+
+          return (
+            <span key={index} className={className}>{part.text}</span>
+          );
+        }) }
+      </span>
+    </span>
+  );
+}
+
+class Members extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      autosuggestValue: '',
+      suggestions: getSuggestions(''),
+      teamMembers: []
+    };
+  }
+
+  removeTeamMember (index) {
+    this.setState({
+      teamMembers: this.state.teamMembers.splice(index, 1)
+    });
+  }
+
+    onChange = (event, { newValue }) => {
     this.setState({
       autosuggestValue: newValue
     });
@@ -167,59 +239,16 @@ class Borrow extends React.Component {
     );
   }
 
-  removeTeamMember (index) {
-    this.setState({
-      teamMembers: this.state.teamMembers.splice(index, 1)
-    });
-  }
+  render(){
 
-  render () {
     const inputProps = {
       placeholder: 'Search in your network',
       value: this.state.autosuggestValue,
       onChange: this.onChange
     };
-
-    return (
-      <div className='container'>
-        <div className='form form--wide'>
-          <h1>Borrow</h1>
-
-          <Row>
-            <Col>
-                <h3>Maximum Principal</h3>
-                <div>
-                  ${this.state.maxPrincipal}
-                </div>
-            </Col>
-            <Col>
-              <h3>Effective APR</h3>
-              <div>
-                {this.state.apr} %
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <ReactHighcharts config={this.chartConfig} />
-            </Col>
-          </Row>
-
-          <label>Enter the amount you wish to invest:</label>
-          <input type='number' required value={this.state.principal} />
-
-          <label>Select loan purpose:</label>
-          <select>
-            <option>Choose one...</option>
-            <option>Pay off credit card bills</option>
-            <option>Buy a car</option>
-            <option>Home renovations</option>
-            <option>School</option>
-            <option>Pay for my wedding</option>
-            <option>Start a business</option>
-            <option>Something else</option>
-          </select>
-
+    return(
+      <Row>
+        <Col>
           <label>Pick your group members:</label>
           <small>Borrow with a group to reduce your interest rate.</small>
 
@@ -231,12 +260,14 @@ class Borrow extends React.Component {
             onSuggestionSelected={this.onSuggestionSelected.bind(this)} />
 
           {this.getTeamMembers()}
+        </Col>
+      </Row>
 
-          <button>Apply</button>
-        </div>
-      </div>
-    );
+      );
   }
 }
 
+
 export default Borrow;
+
+
