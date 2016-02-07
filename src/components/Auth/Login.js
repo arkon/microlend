@@ -24,7 +24,7 @@ class Login extends React.Component {
         return this.setState({ error: true });
       }
 
-      this.context.router.replace('/');
+      this.context.router.replace('dashboard');
     });
   }
 
