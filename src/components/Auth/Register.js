@@ -7,6 +7,8 @@ class Register extends React.Component {
         <div className='form'>
           <h1>Apply today</h1>
 
+          <h2>Personal information</h2>
+
           <div>
             <label>First name</label>
             <input type='text' required />
@@ -30,6 +32,24 @@ class Register extends React.Component {
               <option>Divorced</option>
             </select>
           </div>
+
+          <div>
+            <label>Employment status</label>
+            <select>
+              <option>Unemployed</option>
+              <option>Employed full-time</option>
+              <option>Employed part-time</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Social security number</label>
+            <input type='text' placeholder='###-###-###' required />
+          </div>
+
+          <hr />
+
+          <h2>Account information</h2>
 
           <div>
             <label>Email address</label>

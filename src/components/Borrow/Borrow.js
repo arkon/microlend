@@ -176,12 +176,23 @@ class Borrow extends React.Component {
             </Col>
           </Row>
 
-          <label>Enter the amount you wish to invest</label>
+          <label>Enter the amount you wish to invest:</label>
           <input type='number' placeholder='Amount (CAD)' required />
 
-          <label>Pick your group members</label>
-          <small>Borrow with a group to reduce your interest rate.</small>
+          <label>Select loan purpose:</label>
+          <select>
+            <option>Choose one...</option>
+            <option>Pay off credit card bills</option>
+            <option>Buy a car</option>
+            <option>Home renovations</option>
+            <option>School</option>
+            <option>Pay for my wedding</option>
+            <option>Start a business</option>
+            <option>Something else</option>
+          </select>
 
+          <label>Pick your group members:</label>
+          <small>Borrow with a group to reduce your interest rate.</small>
           <Row>
             <Col>
               <Autosuggest suggestions={this.state.suggestions}
