@@ -7,7 +7,7 @@ var app = express();
 var config = require('./webpack.config.js');
 
 var static_path = path.join(__dirname, 'public');
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 80;
 
 var compiler = webpack(config);
 var middleware = webpackMiddleware(compiler, {
