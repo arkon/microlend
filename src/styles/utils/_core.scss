@@ -60,3 +60,10 @@ dt {
   font-size: 1.5em;
   font-weight: 300;
 }
+
+hr {
+  border: 0;
+  border-top: 1px solid $color-grey-500;
+  height: 0;
+  margin: 1em 0;
+}

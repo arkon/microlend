@@ -8,12 +8,12 @@ const LandingPage = (props) => {
     <div>
       <section className='landing_page__hero'>
         <div className='container'>
-          <h1>Get to the other side.</h1>
-          <p>Borrow money in groups for better rates.</p>
-          <p>Help others by investing.</p>
+          <h1>Get to the other side, together.</h1>
+          <p>Fixed rates from 5% - 15% with no additional fees.</p>
+          <p>Borrow in groups for better rates, or help others by investing.</p>
 
           <Link to='/register'>
-            <button className='button--teal'>Sign up today</button>
+            <button className='button--teal'>Apply today</button>
           </Link>
         </div>
       </section>

@@ -5,18 +5,19 @@ label {
 
 input,
 select {
-  background-color: $color-grey-200;
-  border: 1px solid $color-teal;
-  border-radius: $radius;
-  color: $color-black;
+  background-color: $color-grey-600;
+  border: 0;
+  border-bottom: 1px solid $color-teal;
+  color: $color-white;
   font: inherit;
+  margin: 0.25em 0;
   padding: 0.25em 0.35em;
-  transition: background-color 0.25s;
+  transition: border-bottom-color 0.25s;
   width: 100%;
 
   &:hover,
   &:focus {
-    background-color: $color-white;
+    border-bottom-color: $color-green;
   }
 }
 

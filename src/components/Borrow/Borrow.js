@@ -1,8 +1,8 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlight from 'autosuggest-highlight';
-import { Row, Col } from '../Grid/Grid';
 import ReactHighcharts from 'react-highcharts/bundle/highcharts';
+import { Row, Col } from '../Grid/Grid';
 
 const friends = [
   {
@@ -25,7 +25,6 @@ const friends = [
 
 const startingAPR = 5.2;
 const startingMax = 200;
-
 
 function getSuggestions (value) {
   const inputValue = value.trim().toLowerCase();
@@ -68,11 +67,10 @@ function renderSuggestion (suggestion, { value, valueBeforeUpDown }) {
 }
 
 class Borrow extends React.Component {
-
   constructor (props) {
     super(props);
 
-  this.chartConfig = {
+    this.chartConfig = {
       chart: {
         type: 'column'
       },
@@ -88,13 +86,15 @@ class Borrow extends React.Component {
         }
       },
       series: [
-      {
-        name:'Interest',
-        data:[30, 90, 234]
-      },{
-        name:'Principal',
-        data: [250, 250, 250]
-      }]
+        {
+          name:'Interest',
+          data:[30, 90, 234]
+        },
+        {
+          name:'Principal',
+          data: [250, 250, 250]
+        }
+      ]
     };
 
     this.state = {
@@ -106,7 +106,6 @@ class Borrow extends React.Component {
       principal: startingMax
     };
   }
-
 
   onChange = (event, { newValue }) => {
     this.setState({
@@ -127,32 +126,18 @@ class Borrow extends React.Component {
     this.state.teamMembers.push(suggestion);
   }
 
-  startChat = () => {
-    this.setState({startChat: true});
-  };
-
-  getChat = () => {
-    var chatiFrame = (<iframe src="https://appear.in/microlend" width="700" height="600" frameborder="0"></iframe>);
-    var launchButton = <button onClick={this.startChat}>Questions? Launch Chat</button>;
-    return this.state.startChat ? chatiFrame : launchButton;
-  };
-
   getTeamMembers () {
-    var memberMarkup = this.state.teamMembers.map((member) => {
-      var profilePicture = createProfileImage(member.img);
-
-      return (
-        <span key={member.name}>
-          {profilePicture}
-          <span>{member.name}</span>
-        </span>
-      );
-    });
-
-    return(
+    return (
       <Row>
         <Col>
-          {memberMarkup}
+          { this.state.teamMembers.map((member, index) => {
+            return (
+              <span key={index}>
+                {createProfileImage(member.img)}
+                <span>{member.name}</span>
+              </span>
+            );
+          }) }
         </Col>
       </Row>
     );
@@ -166,37 +151,49 @@ class Borrow extends React.Component {
     };
 
     var teamMembers = this.getTeamMembers();
-    var chat = this.getChat();
 
     return (
       <div className='container'>
         <div className='form form--wide'>
           <h1>Borrow</h1>
-        <Row>
-          <Col>
-              <h3>Maximum Principal</h3>
-              <div>
-                {this.state.maxPrincipal}
-              </div>
-          </Col>
-          <Col>
-            <h3>Effective APR</h3>
-            <div>
-              {this.state.apr}
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ReactHighcharts config={this.chartConfig} />
-          </Col>
-        </Row>
 
-          <label>Enter the amount you wish to invest (CAD)</label>
+          <Row>
+            <Col>
+                <h3>Maximum Principal</h3>
+                <div>
+                  ${this.state.maxPrincipal}
+                </div>
+            </Col>
+            <Col>
+              <h3>Effective APR</h3>
+              <div>
+                {this.state.apr} %
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <ReactHighcharts config={this.chartConfig} />
+            </Col>
+          </Row>
+
+          <label>Enter the amount you wish to invest:</label>
           <input type='number' required value={this.state.principal} />
 
-          <label>Pick your group members</label>
-        <small>Borrow with a group to reduce your interest rate.</small>
+          <label>Select loan purpose:</label>
+          <select>
+            <option>Choose one...</option>
+            <option>Pay off credit card bills</option>
+            <option>Buy a car</option>
+            <option>Home renovations</option>
+            <option>School</option>
+            <option>Pay for my wedding</option>
+            <option>Start a business</option>
+            <option>Something else</option>
+          </select>
+
+          <label>Pick your group members:</label>
+          <small>Borrow with a group to reduce your interest rate.</small>
           <Row>
             <Col>
               <Autosuggest suggestions={this.state.suggestions}
@@ -210,20 +207,18 @@ class Borrow extends React.Component {
           </Row>
 
           {teamMembers}
-        <Row>
-          <Col>
-            <table>
-              <tbody>
-                <tr>
+          <Row>
+            <Col>
+              <table>
+                <tbody>
+                  <tr>
 
-                </tr>
-              </tbody>
-            </table>
-          </Col>
-        </Row>
-        <Row>
-          {chat}
-        </Row>
+                  </tr>
+                </tbody>
+              </table>
+            </Col>
+          </Row>
+
           <button>Submit</button>
         </div>
       </div>

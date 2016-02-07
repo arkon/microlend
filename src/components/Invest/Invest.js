@@ -58,9 +58,10 @@ class Invest extends React.Component {
           <h1>Invest</h1>
           <p>Grow your money by investing in the global pool.</p>
 
-          <label>Enter the amount you wish to borrow (CAD)</label>
+          <label>Enter the amount you wish to borrow:</label>
           <input type='number'
                  required
+                 placeholder='Amount (CAD)'
                  onChange={this.changeAmount} />
 
           <label>Return: {this.state.investmentParameters.rateOfReturn}%</label>

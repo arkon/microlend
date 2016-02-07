@@ -18,7 +18,7 @@ const Header = (props) => {
           ) : (
             <div>
               <Link to='/login'>Login</Link>
-              <Link to='/register'>Register</Link>
+              <Link to='/register'><strong>Apply today</strong></Link>
             </div>
           ) }
         </nav>

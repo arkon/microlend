@@ -36,7 +36,7 @@ class Login extends React.Component {
             <h1>Login</h1>
 
             <div>
-              <label>Username</label>
+              <label>Email address</label>
               <input ref='email' type='text' defaultValue='joe@example.com' required />
             </div>
 
