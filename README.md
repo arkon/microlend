@@ -9,8 +9,8 @@ Requirements:
 npm install
 ```
 
-### Running
+### Running locally
 
 ```
-npm start
+npm run dev
 ```

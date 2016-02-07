@@ -1,25 +1,21 @@
 {
   "name": "microlend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Submission for Scotiabank Hack IT 2016.",
+  "main": "server.js",
+  "homepage": "https://github.com/arkon/microlend#readme",
+  "author": "Eugene Cheung, Peter Newhook, and Spencer Elliott",
+  "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors",
-    "bluemix": "node app.js",
-    "build": "webpack --progress --colors",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --progress --colors",
+    "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arkon/microlend.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/arkon/microlend/issues"
-  },
-  "homepage": "https://github.com/arkon/microlend#readme",
-  "dependencies": {
+  "devDependencies": {
     "autosuggest-highlight": "^2.1.1",
     "babel-cli": "^6.4.5",
     "babel-eslint": "^5.0.0-beta10",
@@ -43,6 +39,7 @@
     "react-chartjs": "^0.7.3",
     "react-dom": "^0.14.7",
     "react-highcharts": "^6.0.0",
+    "react-hot-loader": "^1.3.0",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0-rc6",
     "react-router-redux": "^3.0.0",
@@ -56,6 +53,6 @@
     "wu": "^2.1.0"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": ">= 4.0.0"
   }
 }
