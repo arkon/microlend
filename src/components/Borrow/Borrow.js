@@ -27,7 +27,6 @@ class Borrow extends React.Component {
       principal: startingMax
     };
 
-    this.chartConfig = this.getChartConfig();
   }
 
   getChartConfig(){
@@ -72,9 +71,16 @@ class Borrow extends React.Component {
     return config;
   }
 
+  onPrincipalChange(e){
+    var p = parseFloat(e.target.value);
+    this.setState({principal: p});
+  }
+
 
 
   render () {
+
+    var chartConfig = this.getChartConfig();
 
     return (
       <div className='container'>
@@ -97,12 +103,12 @@ class Borrow extends React.Component {
           </Row>
           <Row>
             <Col>
-              <ReactHighcharts config={this.chartConfig} />
+              <ReactHighcharts config={chartConfig} />
             </Col>
           </Row>
 
           <label>Enter the amount you wish to borrow:</label>
-          <input type='number' required value={this.state.principal} />
+          <input type='number' required value={this.state.principal} onChange={this.onPrincipalChange.bind(this)} />
 
           <label>Select loan purpose:</label>
           <select>
