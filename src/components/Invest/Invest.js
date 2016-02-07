@@ -44,7 +44,7 @@ class Invest extends React.Component {
       investmentParameters: {
         amount: 0,
         rateOfReturn: 10,
-        repaymentPeriod: 20
+        repaymentPeriod: 10
       }
     };
   }
@@ -61,15 +61,17 @@ class Invest extends React.Component {
                  required
                  onChange={this.changeAmount} />
 
-          <label>Return (%)</label>
+          <label>Return: {this.state.investmentParameters.rateOfReturn}%</label>
           <input type='range'
                  min="5"
                  max="20"
                  value={this.state.investmentParameters.rateOfReturn}
                  onChange={this.changeRateOfReturn} />
 
-          <label>Repayment Period</label>
+          <label>Repayment period: {this.state.investmentParameters.repaymentPeriod} months</label>
           <input type="range"
+                 min="3"
+                 max="20"
                  value={this.state.investmentParameters.repaymentPeriod}
                  onChange={this.changeRepaymentPeriod} />
 

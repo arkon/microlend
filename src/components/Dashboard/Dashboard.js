@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
 
                     <div>
                       <p>Remaining:<br /><span className='dashboard__list__outstanding'>$52.50 CAD</span></p>
-                      <p>Originally borrowed:<br />$250.00  CAD@ 1.07%</p>
+                      <p>Originally borrowed:<br />$250.00 CAD @ 7%</p>
                     </div>
 
                     <i className='material-icons'>expand_more</i>
@@ -68,7 +68,7 @@ class Dashboard extends React.Component {
                 <li>
                   <Link to='/investment/1'>
                     <div>
-                      <h4 className='dashboard__list__title'>$500.00 CAD @ 1.09%</h4>
+                      <h4 className='dashboard__list__title'>$500.00 CAD @ 9%</h4>
                       <p className='dashboard__list__date'>2016-02-06</p>
                     </div>
 
