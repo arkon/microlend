@@ -81,7 +81,7 @@ class Invest extends React.Component {
 
           { this.state.completed ? <CompletedMessage /> :
             <div>
-              <p>Grow your money by investing in the global pool.</p>
+              <p>Invest and grow your money.</p>
 
               <label>Enter the amount you wish to borrow:</label>
               <input type='number'
@@ -89,7 +89,10 @@ class Invest extends React.Component {
                      placeholder='Amount (CAD)'
                      onChange={this.changeAmount} />
 
-              <label>Return: {this.state.investmentParameters.rateOfReturn}%</label>
+              <label>
+                Return @ {this.state.investmentParameters.rateOfReturn}%:
+                ${(this.state.investmentParameters.amount * (1 + this.state.investmentParameters.rateOfReturn / 100)).toFixed(2)}
+              </label>
               <input type='range'
                      min='5'
                      max='20'
